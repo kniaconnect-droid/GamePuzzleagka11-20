@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<title>Puzzle Angka Ceria 11–20</title>
+<meta name="description" content="Game edukasi menyusun puzzle angka 11 sampai 20 untuk anak usia 5 tahun, oleh GamEdu." />
+<meta name="theme-color" content="#4caf50" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="Puzzle Angka Ceria" />
+
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="assets/icons/icon-192.png" />
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+
+<!-- Font (progressive enhancement — game tetap berjalan offline dengan font fallback) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Dekorasi kebun: awan & kupu-kupu (berlaku di semua halaman) -->
+<div class="deco-layer" aria-hidden="true">
+  <div class="cloud c1">☁️</div>
+  <div class="cloud c2">☁️</div>
+  <div class="cloud c3">☁️</div>
+  <div class="butterfly b1">🦋</div>
+  <div class="butterfly b2">🦋</div>
+  <div class="butterfly b3">🦋</div>
+</div>
+
+<!-- Watermark brand GamEdu — wajib tampil di semua halaman -->
+<div class="brand-watermark" aria-hidden="true">
+  <img src="assets/brand/gamedu-watermark.png" alt="GamEdu" />
+</div>
+
+<!-- Confetti layer (dipakai halaman Selesai) -->
+<div class="confetti-layer" id="confetti-layer" aria-hidden="true"></div>
+
+<!-- ============ HALAMAN 1: SPLASH ============ -->
+<main class="page" id="page-splash">
+  <div class="grass-strip" aria-hidden="true"></div>
+  <div class="content-card" style="margin-top:6vh;">
+    <img class="game-logo" src="assets/brand/game-logo.png" alt="Puzzle Angka Ceria 11-20" />
+    <div class="mascot" aria-hidden="true">🐰</div>
+    <h1 class="title-xl">Puzzle Angka Ceria</h1>
+    <p class="subtitle">Ayo belajar menyusun angka 11 sampai 20 bersama si Kelinci!</p>
+    <button class="btn big" id="btn-start">▶️ Mulai Bermain</button>
+    <div class="icon-row">
+      <button class="icon-btn" data-audio-toggle aria-label="Audio">🔊</button>
+    </div>
+  </div>
+</main>
+
+<!-- ============ HALAMAN 2: TUTORIAL ============ -->
+<main class="page hidden" id="page-tutorial">
+  <div class="grass-strip" aria-hidden="true"></div>
+  <div class="content-card" style="margin-top:8vh;">
+    <h2 class="title-xl" style="font-size:26px;">Cara Bermain</h2>
+    <div class="tutorial-visual">
+      <div class="tutorial-slot"></div>
+      <div class="tutorial-piece"></div>
+      <div class="tutorial-hand">🖐️</div>
+    </div>
+    <p class="subtitle">Seret potongan puzzle ke tempat yang benar. Jika sudah pas, potongan akan menempel sendiri.</p>
+    <button class="btn big" id="btn-tutorial-mulai">Mulai</button>
+    <div class="icon-row">
+      <button class="icon-btn" data-audio-toggle aria-label="Audio">🔊</button>
+      <button class="icon-btn" data-repeat aria-label="Ulangi Instruksi">🔁</button>
+    </div>
+  </div>
+</main>
+
+<!-- ============ HALAMAN 3: GAMEPLAY ============ -->
+<main class="page hidden" id="page-gameplay">
+  <div class="hud" style="margin-top:4px;">
+    <div class="hud-progress" id="hud-progress">1 / 10</div>
+    <div class="hud-stars" id="hud-stars">⭐ 0</div>
+    <div class="hud-buttons">
+      <button class="icon-btn" id="btn-restart" aria-label="Ulangi">🔄</button>
+      <button class="icon-btn" id="btn-home" aria-label="Beranda">🏠</button>
+      <button class="icon-btn" data-audio-toggle aria-label="Audio">🔊</button>
+      <button class="icon-btn" data-repeat aria-label="Ulangi Instruksi">🔁</button>
+    </div>
+  </div>
+  <div class="puzzle-board" id="puzzle-board"></div>
+</main>
+
+<!-- ============ HALAMAN 4: SELESAI ============ -->
+<main class="page hidden" id="page-done">
+  <div class="grass-strip" aria-hidden="true"></div>
+  <div class="content-card" style="margin-top:10vh;">
+    <div class="mascot" aria-hidden="true">🐰🎉</div>
+    <h2 class="title-xl">Selamat!</h2>
+    <p class="subtitle">Kamu berhasil menyelesaikan <span id="done-count">10 / 10</span> puzzle angka.</p>
+    <div class="stars" aria-hidden="true">
+      <span class="star-pop">⭐</span><span class="star-pop">⭐</span><span class="star-pop">⭐</span>
+    </div>
+    <button class="btn big secondary" id="btn-main-lagi">🔁 Main Lagi</button>
+    <div class="icon-row">
+      <button class="icon-btn" data-audio-toggle aria-label="Audio">🔊</button>
+    </div>
+  </div>
+</main>
+
+<script src="data.js"></script>
+<script src="audio.js"></script>
+<script src="speech.js"></script>
+<script src="puzzle.js"></script>
+<script src="app.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js").catch(() => {
+        /* offline-first tetap berjalan walau registrasi gagal (mis. saat dibuka via file://) */
+      });
+    });
+  }
+</script>
+</body>
+</html>
