@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Puzzle Angka Ceria — Offline</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Nunito", system-ui, sans-serif;
+    background: linear-gradient(to bottom, #bfe6ff, #eafbe6);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+  }
+  .box {
+    background: #fff;
+    border-radius: 24px;
+    padding: 32px 24px;
+    max-width: 360px;
+    box-shadow: 0 8px 24px rgba(46,125,50,0.2);
+  }
+  .emoji { font-size: 56px; }
+  h1 { color: #2e7d32; font-size: 22px; margin: 12px 0 8px; }
+  p { color: #2b4a2f; font-size: 17px; margin-bottom: 20px; }
+  button {
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 28px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+  <div class="box">
+    <div class="emoji">🐰📶</div>
+    <h1>Koneksi Terputus</h1>
+    <p>Sepertinya kamu sedang offline. Coba periksa koneksi internet, lalu buka lagi Puzzle Angka Ceria.</p>
+    <button onclick="location.href='index.html'">Coba Lagi</button>
+  </div>
+</body>
+</html>
